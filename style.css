@@ -1,10 +1,11 @@
-body{
-    padding: 0;
-    margin: 0;
-    direction: rtl;
-    background: #fee715;
-    height: 100vh;
+.bg-me{
+    background-color: #fe8441;
+    color: #ffffff;
+    padding: 30px;
 }
-.navbar{
-    background-color: red;
+img{
+    width: 50px;
+    height: 300px;
+}*{
+    direction: rtl;
 }
