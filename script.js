@@ -1,24 +1,37 @@
-let product = [
-    {id:1 , name:"persil" , img:"2.jpg" , price:1_000_000 , filter:10},
-    {id:2 , name:"peril" , img:"6.jpg" , price:2_000_000 , filter:20},
-    {id:3 , name:"man" , img:"5.jpg" , price:3_000_000 , filter:40},
-    {id:4 , name:"gol" , img:"4.jpg" , price:4_000_000 , filter:30},
-    {id:5 , name:"jam" , img:"3.jpg" , price:5_000_000 , filter:20},
-]
-let productadd = document.getElementById('product')
+$(function() {
 
+  "use strict"
+  
+  var init = "No items yet!";
+  var counter = 0;
 
-product.forEach(product =>{
+  // Initial Cart
+  $(".counter").html(init);
+  
+  // Add Items To Basket
+  function addToBasket() {
+    counter++;
+    $(".counter").html(counter).animate({
+      'opacity' : '0'
+    },300, function() {
+      $(".counter").delay(300).animate({
+        'opacity' : '1'
+      })
+    })
+  }
 
-productadd.innerHTML += `
-<div class="container mt-3">
-<div class="card" style="width:400px">
-  <img class="card-img-top" src="5.jpg" alt="Card image" style="width:100%">
-  <div class="card-body">
-    <h4 class="card-title">John Doe</h4>
-    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-    <a href="#" class="btn btn-primary">See Profile</a>
-  </div>
-</div>`
-
-})
+  // Add To Basket Animation
+  $("button").on("click", function() {
+    addToBasket(); $(this).parent().parent().find(".product_overlay").css({
+      'transform': ' translateY(0px)',
+      'opacity': '1',
+      'transition': 'all ease-in-out .45s'
+    }).delay(1500).queue(function() {
+      $(this).css({
+        'transform': 'translateY(-500px)',
+        'opacity': '0',
+        'transition': 'all ease-in-out .45s'
+      }).dequeue();
+    });
+  });
+});
